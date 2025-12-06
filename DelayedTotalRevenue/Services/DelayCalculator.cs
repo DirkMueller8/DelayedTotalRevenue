@@ -89,6 +89,7 @@
             double idealTriangleRevenue = triangleWeeks * peakRevenue; // area of full triangle (ramp-up + ramp-down)
             double idealPlateauRevenue = maturityWeeks * peakRevenue;
             double idealTotalRevenue = idealTriangleRevenue + idealPlateauRevenue;
+
             return (idealTriangleRevenue, idealPlateauRevenue, idealTotalRevenue);
         }
 
@@ -101,6 +102,7 @@
             double delayedPlateauRevenue = maturityWeeks * delayedPlateauHeight;
             double delayedExtraRevenue = delayWeeks * delayedPlateauHeight; // additional rectangle before hitting decline curve
             double delayedTotalRevenue = delayedTriangleRevenue + delayedPlateauRevenue + delayedExtraRevenue;
+
             return (delayedTriangleRevenue, delayedPlateauRevenue, delayedExtraRevenue, delayedTotalRevenue, delayedPlateauHeight);
         }
 
@@ -109,6 +111,7 @@
         {
             double absoluteLoss = idealTotal - delayedTotal;
             double percentLoss = idealTotal > 0 ? (absoluteLoss / idealTotal) * 100.0 : 0.0;
+
             return (absoluteLoss, percentLoss);
         }
     }
