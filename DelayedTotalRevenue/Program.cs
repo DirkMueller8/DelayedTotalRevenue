@@ -4,10 +4,15 @@
     using System.Globalization;
     using DelayedTotalRevenue.Services;
 
-
+    /// <summary>
+    /// Entry point for the application.
+    /// </summary>
     public static class Program
     {
-        static void Main()
+        /// <summary>
+        /// Main entry point for the application.
+        /// </summary>
+        private static void Main()
         {
             var ci = CultureInfo.InvariantCulture;
             var calculator = new DelayCalculator();
@@ -23,6 +28,7 @@
                 {
                     break;
                 }
+
                 double triangleWeeks = double.Parse(entry ?? "0", ci);
 
                 Console.Write("Enter maturity phase length in weeks: ");
@@ -40,7 +46,8 @@
                 Console.WriteLine($"Delayed total: {result.DelayedTotal:F2}");
                 Console.WriteLine($"Absolute loss: {result.AbsoluteLoss:F2}");
                 Console.WriteLine($"Percent loss: {result.PercentLoss:F2}%");
-            } while (true);
+            }
+            while (true);
         }
     }
 }
