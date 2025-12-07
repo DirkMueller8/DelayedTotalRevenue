@@ -2,11 +2,14 @@
 
 This project calculates delayed revenue based on various input parameters.
 
+![Delayed total revenue diagram](DelayedTotalRevenue/Images/Delay.png)
+
+
 ## Architecture overview
 
 The following class diagram shows the core components:
 
-undefined  
+```mermaid
 
 classDiagram
 class Program {
@@ -52,4 +55,4 @@ DelayCalculator --> CalculationResult : "returns/creates"
 DelayedTotalRevenue.Tests ..> DelayCalculator : "tests"
 CI_GitHub_Actions --> DelayedTotalRevenue.Tests : "runs tests"
 
-undefined
+```
