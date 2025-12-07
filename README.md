@@ -137,4 +137,5 @@ Keep documentation close to the code so architecture and intent remain synchroni
 ## References
 [1] Bernd Schleimer (TÜV Rheinland), presentation at Vector Medical Engineering Symposium 2025 (Karlsruhe, Germany)  
 [2] Whitepaper "Kürzere Time-to-Market", published by Product Manage Mentor, https://www.produktmanagementor.de/pm-ressourcen/  
+
 [3] Martin, Robert C. Clean Code: A Handbook of Agile Software Craftsmanship. Upper Saddle River, NJ: Prentice Hall, 2009
