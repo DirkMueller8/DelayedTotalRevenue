@@ -26,9 +26,9 @@ Output of the software is:
 
 ![Delayed total revenue diagram](DelayedTotalRevenue/Images/Delay.png)
 
-### Where the Idea Comes Frome  
+### Where the Idea Comes From  
 In a presentation [1] the impact of delays on the total sales volume in medical device projects was highlighted. Another useful source [2] confirmed that the delay does not merely shift the whole (ideal) curve to the right: it also diminishes the peak revenue.  
-A delay to market cannot be compensated by a steeper ramp-up time. Moreover, because of loss of the state of art due to competition at a fixed point of time, the decline happens at the same time as in the ideal case. Hence, the financial impact is negatively affected by two effects modelled in this software:  
+A delay to market cannot be compensated by a steeper ramp-up time. Moreover, because of loss of the state of the art due to competition at a fixed point of time, the decline happens at the same time as in the ideal case. Hence, the financial impact is negatively affected by two effects modelled in this software:  
 
 - less time to sell the product    
 - smaller peak revenue
@@ -40,7 +40,7 @@ Other effects not modelled in this software:
 ## Example Case  
 In this example I assume the following:  
 1. Length of the ramp-up time period: 104 weeks (2 years)  
-2. Length of the maturity plateau time period: 416 weeks (8 years)  
+2. Length of the maturity (plateau) time period: 416 weeks (8 years)  
 
 
 This means the product in the ideal case is on the market for 12 years.  
