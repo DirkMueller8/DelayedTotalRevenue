@@ -41,13 +41,16 @@ Other effects not modelled in this software:
 In this example I assume the following:  
 1. Length of the ramp-up time period: 104 weeks (2 years)  
 2. Length of the maturity plateau time period: 416 weeks (8 years)  
-This means the product in the idela case is on the market for 12 years.  
-Furth input:  
+
+This means the product in the ideal case is on the market for 12 years.  
+
+Further input:  
 3. Peak revenue: 200.000 Euro/week  
 4. Delay: 12 weeks (3 months)  
+
 This moderate delay typical for the time of a resubmission of documents to the regulatory body results in a relative loss of 11,5% in lifetime revenue!
 
-![Example run](DelayedTotalRevenue/Images/Delay.png)  
+![Example run](DelayedTotalRevenue/Images/Delay_run.png)  
 
 ## Technical Description  
 
