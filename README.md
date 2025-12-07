@@ -1,4 +1,4 @@
-# Total Lifetime Revenue Loss in Case of Delays
+# Total Lifetime Revenue Loss in Case of Delays in Development
 
 ## Motivation
 
@@ -35,7 +35,7 @@ A delay to market cannot be compensated by a steeper ramp-up time. Moreover, bec
 
 Other effects not modelled in this software:  
 - opportunity cost of prolonged team allocation
-- revenue generated later in time --> Net Present Value is reduced (higher financing costs)
+- revenue generated later in time -> Net Present Value is reduced (higher financing costs)
 
 
 ## Technical Description  
@@ -104,7 +104,7 @@ CI_GitHub_Actions --> DelayedTotalRevenue.Tests : "runs tests"
 
 ### How this Reflects Clean‑Code (SOLID) Principles  
 SOLID design principles in C# are basic design principles. SOLID stands for **S**ingle Responsibility Principle (SRP), **O**pen closed Principle (OSP), **L**iskov substitution Principle (LSP), **I**nterface Segregation Principle (ISP), and **D**ependency Inversion Principle (DIP). 
-Robert C. Martin compiled these principles in the 1990s, and published them in the great book "Clean Code" [1]. These principles provide us with ways to move from tightly coupled code and little encapsulation to the desired results of loosely coupled and encapsulated real business needs properly.  
+Robert C. Martin compiled these principles in the 1990s, supported by his great book "Clean Code" [3]. These principles provide us with ways to move from tightly coupled code and little encapsulation to the desired results of loosely coupled and encapsulated real business needs properly.  
 #### Single Responsibility Principle  
 Each class has one focused role (```DelayCalculator``` does calculations; ```CalculationResult``` only holds data; ```Program``` handles I/O).  
 #### Open Closed Principle (OSP)
@@ -117,23 +117,24 @@ This principle is fulfilled by exposing a narrow ```IDelayCalculator``` interfac
 High‑level code depends on the ```IDelayCalculator``` abstraction, not the concrete ```DelayCalculator```.  
 #### Small, focused methods 
 ```ValidateInputs```, ```ComputeIdealPieces```, ```ComputeDelayedPieces```, ```ComputeLosses``` improve readability and testability.  
-#### Other items improving the cod equality  
-##### Readability & naming  
+### Other Items Improving the Code Quality  
+#### Readability & naming  
 Descriptive names and XML docs make intent explicit; public API documented via summaries and <param> tags.  
-##### Testability 
+#### Testability 
 Logic is decoupled from Console so unit tests can exercise behavior in isolation; integration tests capture Console.Out when needed.  
-##### Fail‑fast validation  
+#### Fail‑fast validation  
 ```ValidateInputs``` enforces preconditions consistently.  
 ### Test-driven development  
-#### Non‑breaking option to extend by adding functionality through test-driven development: 
+#### Non‑breaking option to extend by adding functionality through test-driven development 
 The idea is to first write a unit test that defines the input and expected output e.g. for the impact of a product recall on the total revenue. The run the test and have it fail. Next, add a dedicated method on ```DelayCalculator``` (e.g., ```CalculateWithRecall(...)```) and run the unit test; keep ```IDelayCalculator``` unchanged.  
 #### Alternative (if recall must be part of public contract)  
 Add an overload to ```IDelayCalculator``` and update implementations.  
 #### How to plan testing  
 Add tests in ```DelayedTotalRevenue.Tests```, run locally via ```dotnet test```, then CI will validate on push. It is important to keep public API stable, Hence, prefer new methods over changing existing signatures. Add a unit test per behavioral change and a small integration test when the CLI is extended.  
-#### Documentation (README + Mermaid)  
+### Documentation (README + Mermaid)  
 Keep documentation close to the code so architecture and intent remain synchronized.  
 
 ## References
 [1] Bernd Schleimer (TÜV Rheinland), presentation at Vector Medical Engineering Symposium 2025 (Karlsruhe, Germany)  
-[2] Whitepaper "Kürzere Time-to-Market", published by Product Manage Mentor, https://www.produktmanagementor.de/pm-ressourcen/
+[2] Whitepaper "Kürzere Time-to-Market", published by Product Manage Mentor, https://www.produktmanagementor.de/pm-ressourcen/  
+[3] Martin, Robert C. Clean Code: A Handbook of Agile Software Craftsmanship. Upper Saddle River, NJ: Prentice Hall, 2009
