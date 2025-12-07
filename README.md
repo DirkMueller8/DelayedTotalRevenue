@@ -1,4 +1,4 @@
-# Delayed Total Revenue
+# Total Lifetime Revenue Loss in Case of Delays
 
 ## Motivation
 
@@ -16,7 +16,7 @@ Input to the software is:
 3. Peak revenue (in units of currency/week)  
 4. Delay (in weeks)  
 
-Output to the software is:  
+Output of the software is:  
 1. Total lifetime revenue of ideal case  
 2. Total lifetime revenue of delayed case  
 3. Absolute loss as a result of the delay  
@@ -25,6 +25,17 @@ Output to the software is:
 ## Schematic Drawing
 
 ![Delayed total revenue diagram](DelayedTotalRevenue/Images/Delay.png)
+
+### Where the Idea Comes Frome  
+In a presentation [1] describing the impact of delays on the total sales volume in medical device projects was highlighted. Another useful source [2] confirmed that the delay does not merely shift the whole (ideal) curve to the right: it also diminishes the peak revenue.  
+A delay to market cannot be compensated by a steeper ramp-up time. Moreover, because of loss of the state of art due to competition at a fixed point of time, the decline happens at the same time as in the ideal case. Hence, the financial impact is negatively affected by two effects modelled in this software:  
+
+- less time to sell the product    
+- smaller peak revenue
+
+Other effects not modelled in this software:  
+- opportunity cost of prolonged team allocation
+- revenue generated later in time --> Net Present Value is reduced (higher financing costs)
 
 
 ## Technical Description  
@@ -121,4 +132,8 @@ Add an overload to ```IDelayCalculator``` and update implementations.
 #### How to plan testing  
 Add tests in ```DelayedTotalRevenue.Tests```, run locally via ```dotnet test```, then CI will validate on push. It is important to keep public API stable, Hence, prefer new methods over changing existing signatures. Add a unit test per behavioral change and a small integration test when the CLI is extended.  
 #### Documentation (README + Mermaid)  
-Keep documentation close to the code so architecture and intent remain synchronized.
+Keep documentation close to the code so architecture and intent remain synchronized.  
+
+## References
+[1] Bernd Schleimer (TÜV Rheinland), presentation at Vector Medical Engineering Symposium 2025 (Karlsruhe, Germany)  
+[2] Whitepaper "Kürzere Time-to-Market", published by Product Manage Mentor, https://www.produktmanagementor.de/pm-ressourcen/
