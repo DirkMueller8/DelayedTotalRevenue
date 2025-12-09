@@ -5,7 +5,8 @@
 
     /// <summary>
     /// Calculates the revenue impact of a delayed product launch.
-    public class DelayCalculator
+    /// </summary>
+    public class DelayCalculator : IDelayCalculator
     {
         /// <summary>
         /// Calculates revenue pieces for an ideal launch and for a launch delayed by <paramref name="delayWeeks"/>,
@@ -54,6 +55,41 @@
             };
         }
 
+        /// <summary>
+        /// Calculates the revenue loss due to a product recall during the maturity (plateau) phase.
+        /// This method is independent from the market-entry delay calculation.
+        /// </summary>
+        /// <param name="triangleWeeks">Duration in weeks of the ramp-up/ramp-down triangular phases. Must be &gt; 0.</param>
+        /// <param name="maturityWeeks">Duration in weeks of the plateau (mature) phase. Must be &gt;= 0.</param>
+        /// <param name="peakRevenue">Peak revenue per week at full maturity. Must be &gt;= 0.</param>
+        /// <param name="recallWeeks">Number of weeks the product is not sold due to the recall. Must be &gt;= 0 and &lt;= <paramref name="maturityWeeks"/>.</param>
+        /// <returns>A <see cref="RecallResult"/> containing recall loss metrics.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when one or more input arguments are outside the allowed ranges.</exception>
+        public RecallResult CalculateRecallLoss(double triangleWeeks, double maturityWeeks, double peakRevenue, double recallWeeks)
+        {
+            ValidateBasicInputs(triangleWeeks, maturityWeeks, peakRevenue);
+
+            if (recallWeeks < 0)
+                throw new ArgumentOutOfRangeException(nameof(recallWeeks), "Recall weeks must be >= 0.");
+            if (recallWeeks > maturityWeeks)
+                throw new ArgumentOutOfRangeException(nameof(recallWeeks), "Recall weeks must fit within the maturity phase.");
+
+            var (_, _, idealTotal) = ComputeIdealPieces(triangleWeeks, maturityWeeks, peakRevenue);
+
+            double recallLoss = recallWeeks * peakRevenue;
+            double adjustedTotal = idealTotal - recallLoss;
+            double percentLoss = idealTotal > 0 ? (recallLoss / idealTotal) * 100.0 : 0.0;
+
+            return new RecallResult
+            {
+                IdealTotal = idealTotal,
+                RecallWeeks = recallWeeks,
+                RecallLoss = recallLoss,
+                AdjustedTotal = adjustedTotal,
+                PercentLoss = percentLoss,
+            };
+        }
+
         // Preserve argument validation in a single small method
         private static void ValidateInputs(double triangleWeeks, double maturityWeeks, double peakRevenue, double delayWeeks)
         {
@@ -81,6 +117,17 @@
             {
                 throw new ArgumentOutOfRangeException(nameof(delayWeeks));
             }
+        }
+
+        // Basic validation variant used by recall method (no delay parameter)
+        private static void ValidateBasicInputs(double triangleWeeks, double maturityWeeks, double peakRevenue)
+        {
+            if (triangleWeeks <= 0)
+                throw new ArgumentOutOfRangeException(nameof(triangleWeeks));
+            if (maturityWeeks < 0)
+                throw new ArgumentOutOfRangeException(nameof(maturityWeeks));
+            if (peakRevenue < 0)
+                throw new ArgumentOutOfRangeException(nameof(peakRevenue));
         }
 
         // Returns (triangleArea, plateauArea, total)
