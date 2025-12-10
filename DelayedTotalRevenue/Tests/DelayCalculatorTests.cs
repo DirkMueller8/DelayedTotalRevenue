@@ -63,7 +63,7 @@
         [TestMethod]
         public void InvalidTriangle_Throws()
         {
-            var calc = new DelayCalculator();
+            var calc = new DelayCalculator();  
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => calc.Calculate(0.0, 10.0, 100.0, 0.0));
         }
 
