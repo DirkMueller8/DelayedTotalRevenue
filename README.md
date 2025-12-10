@@ -1,5 +1,15 @@
 # Total Lifetime Revenue Loss in Case of Delays in Development
 
+**********************************************
+Software:	&emsp;	C#13 / .NET9.0
+
+Version:	&emsp;  1.0
+
+Date: 	&emsp;		Dec 12, 2025
+
+Author:	&emsp;		Dirk Mueller
+**********************************************
+
 ## Motivation
 
 This project calculates the total revenue of a product sold on the market in an:  
@@ -55,7 +65,7 @@ This moderate delay typical for the time of a resubmission of documents to the r
 
 ## Technical Description  
 
-The code was written in C# 13 and .NET 9.0, and implemented as a command-line application.
+The code was implemented as a command-line application.
 
 ## Architecture overview
 
